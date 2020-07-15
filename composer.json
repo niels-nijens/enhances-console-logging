@@ -1,5 +1,5 @@
 {
-    "name": "niels-nijens/symfony-console-logging",
+    "name": "niels-nijens/enhances-console-logging",
     "description": "Components to enhance Symfony console & stdout logging.",
     "type": "library",
     "license": "MIT",
@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Nijens\\SymfonyConsoleLogging\\": "src/"
+            "Nijens\\EnhancesConsoleLogging\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Nijens\\SymfonyConsoleLogging\\Tests\\": "tests/"
+            "Nijens\\EnhancesConsoleLogging\\Tests\\": "tests/"
         }
     },
     "scripts": {
