@@ -13,7 +13,8 @@
         "php": "^7.3"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16"
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "symfony/phpunit-bridge": "^5.1"
     },
     "autoload": {
         "psr-4": {
@@ -28,10 +29,14 @@
     "scripts": {
         "cs-fixer": [
             "./vendor/bin/php-cs-fixer fix"
+        ],
+        "test": [
+            "./vendor/bin/simple-phpunit"
         ]
     },
     "scripts-descriptions": {
-        "cs-fixer": "Run the code style fixer for this project."
+        "cs-fixer": "Run the code style fixer for this project.",
+        "test": "Run the unit tests for this project."
     },
     "config": {
         "sort-packages": true
