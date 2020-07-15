@@ -30,12 +30,16 @@
         "cs-fixer": [
             "./vendor/bin/php-cs-fixer fix"
         ],
+        "cs-validate": [
+            "./vendor/bin/php-cs-fixer fix --dry-run"
+        ],
         "test": [
             "./vendor/bin/simple-phpunit"
         ]
     },
     "scripts-descriptions": {
         "cs-fixer": "Run the code style fixer for this project.",
+        "cs-validate": "Run the code style validation for this project.",
         "test": "Run the unit tests for this project."
     },
     "config": {
