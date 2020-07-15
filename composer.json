@@ -36,7 +36,7 @@
             "./vendor/bin/php-cs-fixer fix --allow-risky=yes --dry-run"
         ],
         "test": [
-            "./vendor/bin/simple-phpunit"
+            "./vendor/bin/simple-phpunit --testdox"
         ]
     },
     "scripts-descriptions": {
