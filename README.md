@@ -1,5 +1,11 @@
 # enhances-console-logging
 
+[![Latest version on Packagist][ico-version]][link-version]
+[![Software License][ico-license]][link-license]
+[![Build Status][ico-build]][link-build]
+[![Coverage Status][ico-coverage]][link-coverage]
+[![Code Quality][ico-code-quality]][link-code-quality]
+
 Components to enhance Symfony console &amp; stdout logging.
 
 
@@ -84,6 +90,16 @@ If you discover any security related issues, please email
 This package is licensed under the MIT License. Please see the [LICENSE file][link-license] for more information.
 
 
+[ico-version]: https://img.shields.io/packagist/v/niels-nijens/enhances-console-logging
+[ico-license]: https://img.shields.io/packagist/l/niels-nijens/enhances-console-logging
+[ico-build]: https://scrutinizer-ci.com/g/niels-nijens/enhances-console-logging/badges/build.png?b=master
+[ico-coverage]: https://scrutinizer-ci.com/g/niels-nijens/enhances-console-logging/badges/coverage.png?b=master
+[ico-code-quality]: https://scrutinizer-ci.com/g/niels-nijens/enhances-console-logging/badges/quality-score.png?b=master
+
+[link-version]: https://packagist.org/packages/niels-nijens/enhances-console-logging
+[link-build]: https://scrutinizer-ci.com/g/niels-nijens/enhances-console-logging/build-status/master
+[link-coverage]: https://scrutinizer-ci.com/g/niels-nijens/enhances-console-logging/build-status/master
+[link-code-quality]: https://scrutinizer-ci.com/g/niels-nijens/enhances-console-logging/build-status/master
 [link-author]: https://github.com/niels-nijens
 [link-contributors]: https://github.com/niels-nijens/enhances-console-logging/graphs/contributors
 [link-license]: LICENSE
