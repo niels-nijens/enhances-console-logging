@@ -31,7 +31,7 @@ build:
 
                     - composer cs-validate
 
-                    - command: 'composer test-with-coverage'
+                    - command: 'composer test-with-coverage-clover'
                       coverage:
                           file: 'coverage-clover.xml'
                           format: 'clover'
