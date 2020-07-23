@@ -37,12 +37,20 @@
         ],
         "test": [
             "./vendor/bin/simple-phpunit --testdox"
+        ],
+        "test-with-coverage-clover": [
+            "./vendor/bin/simple-phpunit --testdox --coverage-clover=coverage-clover.xml"
+        ],
+        "test-with-coverage-html": [
+            "./vendor/bin/simple-phpunit --testdox --coverage-html=coverage"
         ]
     },
     "scripts-descriptions": {
         "cs-fixer": "Run the code style fixer for this project.",
         "cs-validate": "Run the code style validation for this project.",
-        "test": "Run the unit tests for this project."
+        "test": "Run the unit tests for this project.",
+        "test-with-coverage-clover": "Run the unit tests for this project with coverage clover.",
+        "test-with-coverage-html": "Run the unit tests for this project with coverage report in HTML."
     },
     "config": {
         "sort-packages": true
