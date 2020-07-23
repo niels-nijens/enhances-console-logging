@@ -30,6 +30,7 @@ The `ProgressBarConsoleLogger` adheres to the [PSR-3 logging specification](http
 
 declare(strict_types=1);
 
+use Nijens\EnhancesConsoleLogging\ProgressBar\LogContext;
 use Nijens\EnhancesConsoleLogging\ProgressBar\ProgressBarConsoleLogger;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -48,9 +49,9 @@ $logger->registerProgressBar(
 $logger->info(
     'This message will be set on the progress bar.',
     [
-        ProgressBarConsoleLogger::PROGRESS_IDENTIFIER_CONTEXT_KEY => 'test', // The unique identifier.
-        ProgressBarConsoleLogger::PROGRESS_INCREMENT_CONTEXT_KEY => 0, // Allows incrementing the max steps. (optional)
-        ProgressBarConsoleLogger::PROGRESS_ADVANCE_CONTEXT_KEY => 0, // Allows advancing the steps. (optional)
+        LogContext::PROGRESS_IDENTIFIER_KEY => 'test', // The unique identifier.
+        LogContext::PROGRESS_INCREMENT_KEY => 0, // Allows incrementing the max steps. (optional)
+        LogContext::PROGRESS_ADVANCE_KEY => 0, // Allows advancing the steps. (optional)
     ]
 );
 

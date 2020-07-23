@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Nijens\EnhancesConsoleLogging\Tests\ProgressBar;
 
+use Nijens\EnhancesConsoleLogging\ProgressBar\LogContext;
 use Nijens\EnhancesConsoleLogging\ProgressBar\ProgressBarConsoleLogger;
-use Nijens\EnhancesConsoleLogging\ProgressBar\ProgressBarConsoleLoggerInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
@@ -71,7 +71,7 @@ class ProgressBarConsoleLoggerTest extends TestCase
         $this->logger->registerProgressBar('test', $progressBar);
         $this->logger->info(
             'Logging this message to the progress bar.',
-            [ProgressBarConsoleLoggerInterface::PROGRESS_IDENTIFIER_CONTEXT_KEY => 'test']
+            [LogContext::PROGRESS_IDENTIFIER_KEY => 'test']
         );
 
         $this->assertSame(
@@ -91,8 +91,8 @@ class ProgressBarConsoleLoggerTest extends TestCase
         $this->logger->info(
             'Logging this message to the progress bar.',
             [
-                ProgressBarConsoleLoggerInterface::PROGRESS_IDENTIFIER_CONTEXT_KEY => 'test',
-                ProgressBarConsoleLoggerInterface::PROGRESS_INCREMENT_CONTEXT_KEY => 5,
+                LogContext::PROGRESS_IDENTIFIER_KEY => 'test',
+                LogContext::PROGRESS_INCREMENT_KEY => 5,
             ]
         );
 
@@ -113,8 +113,8 @@ class ProgressBarConsoleLoggerTest extends TestCase
         $this->logger->info(
             'Logging this message to the progress bar.',
             [
-                ProgressBarConsoleLoggerInterface::PROGRESS_IDENTIFIER_CONTEXT_KEY => 'test',
-                ProgressBarConsoleLoggerInterface::PROGRESS_ADVANCE_CONTEXT_KEY => 1,
+                LogContext::PROGRESS_IDENTIFIER_KEY => 'test',
+                LogContext::PROGRESS_ADVANCE_KEY => 1,
             ]
         );
 
@@ -136,8 +136,8 @@ class ProgressBarConsoleLoggerTest extends TestCase
         $this->logger->info(
             'Logging this message to the progress bar.',
             [
-                ProgressBarConsoleLoggerInterface::PROGRESS_IDENTIFIER_CONTEXT_KEY => 'does-not-exist',
-                ProgressBarConsoleLoggerInterface::PROGRESS_ADVANCE_CONTEXT_KEY => 1,
+                LogContext::PROGRESS_IDENTIFIER_KEY => 'does-not-exist',
+                LogContext::PROGRESS_ADVANCE_KEY => 1,
             ]
         );
 
@@ -178,9 +178,9 @@ class ProgressBarConsoleLoggerTest extends TestCase
         $this->logger->info(
             'Logging this message to the progress bar.',
             [
-                ProgressBarConsoleLoggerInterface::PROGRESS_IDENTIFIER_CONTEXT_KEY => 'test',
-                ProgressBarConsoleLoggerInterface::PROGRESS_INCREMENT_CONTEXT_KEY => 1,
-                ProgressBarConsoleLoggerInterface::PROGRESS_ADVANCE_CONTEXT_KEY => 1,
+                LogContext::PROGRESS_IDENTIFIER_KEY => 'test',
+                LogContext::PROGRESS_INCREMENT_KEY => 1,
+                LogContext::PROGRESS_ADVANCE_KEY => 1,
             ]
         );
     }

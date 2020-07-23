@@ -21,9 +21,9 @@ use Symfony\Component\Console\Helper\ProgressBar;
  * Allows logged messages to be displayed with a {@see ProgressBar}.
  *
  * The context allows control of the progression of the progress bar with the following keys:
- * - {@see ProgressBarConsoleLoggerInterface::PROGRESS_IDENTIFIER_CONTEXT_KEY}: The identifier of the progress bar
- * - {@see ProgressBarConsoleLoggerInterface::PROGRESS_INCREMENT_CONTEXT_KEY}: Increments the max steps of the progress bar
- * - {@see ProgressBarConsoleLoggerInterface::PROGRESS_ADVANCE_CONTEXT_KEY}: Advances the progress bar
+ * - {@see LogContext::PROGRESS_IDENTIFIER_KEY}: The identifier of the progress bar
+ * - {@see LogContext::PROGRESS_INCREMENT_KEY}: Increments the max steps of the progress bar
+ * - {@see LogContext::PROGRESS_ADVANCE_KEY}: Advances the progress bar
  *
  * @author Niels Nijens <nijens.niels@gmail.com>
  */
@@ -77,15 +77,15 @@ class ProgressBarConsoleLogger extends AbstractLogger implements ProgressBarCons
      */
     private function logToProgressBar(string $level, string $message, array $context): void
     {
-        if (isset($context[self::PROGRESS_IDENTIFIER_CONTEXT_KEY]) === false) {
+        if (isset($context[self::PROGRESS_IDENTIFIER_KEY]) === false) {
             return;
         }
 
-        if (isset($this->progressBars[$context[self::PROGRESS_IDENTIFIER_CONTEXT_KEY]]) === false) {
+        if (isset($this->progressBars[$context[self::PROGRESS_IDENTIFIER_KEY]]) === false) {
             return;
         }
 
-        $progressBar = $this->progressBars[$context[self::PROGRESS_IDENTIFIER_CONTEXT_KEY]];
+        $progressBar = $this->progressBars[$context[self::PROGRESS_IDENTIFIER_KEY]];
         $progressBar->setMessage(
             sprintf(
                 '<%s>%s</>',
@@ -93,8 +93,8 @@ class ProgressBarConsoleLogger extends AbstractLogger implements ProgressBarCons
                 $this->replaceMessagePlaceholdersWithContextData($message, $context)
             )
         );
-        $progressBar->setMaxSteps($progressBar->getMaxSteps() + ($context[self::PROGRESS_INCREMENT_CONTEXT_KEY] ?? 0));
-        $progressBar->advance($context[self::PROGRESS_ADVANCE_CONTEXT_KEY] ?? 0);
+        $progressBar->setMaxSteps($progressBar->getMaxSteps() + ($context[self::PROGRESS_INCREMENT_KEY] ?? 0));
+        $progressBar->advance($context[self::PROGRESS_ADVANCE_KEY] ?? 0);
     }
 
     /**
@@ -119,8 +119,8 @@ class ProgressBarConsoleLogger extends AbstractLogger implements ProgressBarCons
      */
     private function clearProgressLoggingFromContext(array &$context): void
     {
-        unset($context[self::PROGRESS_IDENTIFIER_CONTEXT_KEY]);
-        unset($context[self::PROGRESS_INCREMENT_CONTEXT_KEY]);
-        unset($context[self::PROGRESS_ADVANCE_CONTEXT_KEY]);
+        unset($context[self::PROGRESS_IDENTIFIER_KEY]);
+        unset($context[self::PROGRESS_INCREMENT_KEY]);
+        unset($context[self::PROGRESS_ADVANCE_KEY]);
     }
 }

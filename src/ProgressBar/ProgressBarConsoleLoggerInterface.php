@@ -23,34 +23,19 @@ use Symfony\Component\Console\Helper\ProgressBar;
  * also be able to actually log the messages to eg. a file.
  *
  * The context must allow control of the progression of the progress bar with the following keys:
- * - {@see ProgressBarConsoleLoggerInterface::PROGRESS_IDENTIFIER_CONTEXT_KEY}: The identifier of the progress bar
- * - {@see ProgressBarConsoleLoggerInterface::PROGRESS_INCREMENT_CONTEXT_KEY}: Increments the max steps of the progress bar
- * - {@see ProgressBarConsoleLoggerInterface::PROGRESS_ADVANCE_CONTEXT_KEY}: Advances the progress bar
+ * - {@see LogContext::PROGRESS_IDENTIFIER_KEY}: The identifier of the progress bar
+ * - {@see LogContext::PROGRESS_INCREMENT_KEY}: Increments the max steps of the progress bar
+ * - {@see LogContext::PROGRESS_ADVANCE_KEY}: Advances the progress bar
  *
  * @author Niels Nijens <nijens.niels@gmail.com>
  */
-interface ProgressBarConsoleLoggerInterface extends LoggerInterface
+interface ProgressBarConsoleLoggerInterface extends LoggerInterface, LogContext
 {
-    /**
-     * Logging context key to identify the registered {@see ProgressBar}.
-     */
-    public const PROGRESS_IDENTIFIER_CONTEXT_KEY = '_progress_logging_identifier';
-
-    /**
-     * Logging context key to increment the {@see ProgressBar}.
-     */
-    public const PROGRESS_INCREMENT_CONTEXT_KEY = '_progress_logging_increment';
-
-    /**
-     * Logging context key to advance the {@see ProgressBar}.
-     */
-    public const PROGRESS_ADVANCE_CONTEXT_KEY = '_progress_logging_advance';
-
     /**
      * Registers a {@see ProgressBar} to a specific identifier.
      *
      * The progress bar can be referenced by using the
-     * {@see ProgressBarConsoleLoggerInterface::PROGRESS_IDENTIFIER_CONTEXT_KEY} key
+     * {@see LogContext::PROGRESS_IDENTIFIER_KEY} key
      * in the {@see LoggerInterface::log} context.
      */
     public function registerProgressBar(string $identifier, ProgressBar $progressBar): void;
