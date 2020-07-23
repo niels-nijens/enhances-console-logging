@@ -1,0 +1,58 @@
+filter:
+    excluded_paths:
+        - 'tests/*'
+
+    dependency_paths:
+        - 'vendor/'
+
+checks:
+    php: true
+
+build:
+    dependencies:
+        before:
+            - restore-from-cache repository "dependencies"
+            - restore-from-cache repository "phpunit"
+            - sudo mv /usr/bin/composer.phar /usr/bin/composer && sudo chmod +x /usr/bin/composer
+
+        override:
+            - composer install --no-interaction --optimize-autoloader
+            - command: wget https://get.symfony.com/cli/installer -O - | bash
+              only_if: '[ "$SCRUTINIZER_BRANCH" == "master" ] && [ -z "$SCRUTINIZER_PR_SOURCE_BRANCH" ]'
+
+        after:
+            - store-in-cache repository "dependencies" vendor/
+
+    nodes:
+        tests:
+            tests:
+                override:
+                    - composer validate
+
+                    - composer cs-validate
+
+                    - command: 'composer test-with-coverage'
+                      coverage:
+                          file: 'coverage-clover.xml'
+                          format: 'clover'
+
+                    - command: '~/.symfony/bin/symfony security:check --force-update'
+                      only_if: '[ "$SCRUTINIZER_BRANCH" == "master" ] && [ -z "$SCRUTINIZER_PR_SOURCE_BRANCH" ]'
+
+                    - php-scrutinizer-run
+
+                after:
+                    - store-in-cache repository "phpunit" vendor/bin/.phpunit/
+
+    environment:
+        php:
+            version: '7.3'
+
+            pecl_extensions:
+                - pcov
+                - zip
+
+build_failure_conditions:
+    - 'elements.rating(<= D).new.exists' # No new classes/methods with a rating of D or worse.
+    - 'project.metric("scrutinizer.quality", < 8)' # Code Quality Rating drops below 8.
+    - 'project.metric("scrutinizer.test_coverage", < 0.80)' # Code Coverage drops below 80%.
